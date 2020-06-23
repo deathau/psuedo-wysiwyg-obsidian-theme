@@ -1,0 +1,203 @@
+@charset "UTF-8";
+.CodeMirror-code > :not(.CodeMirror-activeline) .cm-formatting-link {
+  /* this is for the double square brackets on internal links */
+  display: none;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .cm-formatting, .CodeMirror-code > :not(.CodeMirror-activeline) .cm-comment, .CodeMirror-code > :not(.CodeMirror-activeline) .cm-formatting-escape {
+  /* this gets most formatting */
+  display: none;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .cm-formatting.cm-hashtag-begin {
+  /* I think we want to see hashes on tags */
+  display: inline;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .cm-formatting-link-string.cm-url + .cm-url {
+  /* external links are a bit dodgy at the moment */
+  /* you can't ctrl+click on a url you can't see... */
+  width: 14px;
+  height: 1em;
+  padding-left: 18px;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  position: relative;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .cm-formatting-link-string.cm-url + .cm-url::before {
+  /* putting in the arrow icon from the default theme */
+  content: "";
+  background-color: var(--text-muted);
+  -webkit-mask-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyBjbGFzcz0naS1leHRlcm5hbCcgdmlld0JveD0nMCAwIDMyIDMyJyB3aWR0aD0nMTQnIGhlaWdodD0nMTQnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzg4ODg4OCcgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJyBzdHJva2Utd2lkdGg9JzkuMzglJz48cGF0aCBkPSdNMTQgOSBMMyA5IDMgMjkgMjMgMjkgMjMgMTggTTE4IDQgTDI4IDQgMjggMTQgTTI4IDQgTDE0IDE4Jy8+PC9zdmc+DQo=");
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  left: 4px;
+  bottom: 0;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) pre.HyperMD-hr {
+  /* hide hr breaks */
+  visibility: hidden;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-hr-bg {
+  /* but show hr as a line */
+  visibility: visible;
+  content: "";
+  width: 100%;
+  height: 2px;
+  display: block;
+  background-color: var(--background-modifier-border);
+  margin: 26px 0;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line {
+  /* still have to work out ordered lists and checkbox lists... */
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-list-1::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-list-1::before {
+  /* 1st level ul bullet */
+  content: "•";
+  padding-right: 0.2em;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-list-2::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-list-2::before {
+  /* 2nd level ul bullet */
+  content: "◦";
+  padding-right: 0.2em;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-list-3::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-list-3::before {
+  /* 3rd level ul bullet */
+  content: "▪";
+  padding-right: 0.4em;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-formatting-list-ol + span, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-formatting-list-ol + span {
+  margin-left: 1.5em;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-formatting-list-ol + span::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-formatting-list-ol + span::before {
+  /* ol bullet */
+  display: inline-block;
+  width: 1em;
+  margin-left: -1.6em;
+  text-align: right;
+  direction: rtl;
+  overflow: visible;
+  white-space: nowrap;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-1 .cm-formatting-list-ol + .cm-list-1::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-1 .cm-formatting-list-ol + .cm-list-1::before {
+  /* 1st level ul bullet */
+  content: "." counter(ol-1);
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-2 .cm-formatting-list-ol + .cm-list-2::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-2 .cm-formatting-list-ol + .cm-list-2::before {
+  /* 1st level ul bullet */
+  content: "." counter(ol-2);
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-3 .cm-formatting-list-ol + .cm-list-3::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-3 .cm-formatting-list-ol + .cm-list-3::before {
+  /* 1st level ul bullet */
+  content: "." counter(ol-3);
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-4 .cm-formatting-list-ol + .cm-list-4::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-4 .cm-formatting-list-ol + .cm-list-4::before {
+  /* 1st level ul bullet */
+  content: "." counter(ol-4);
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-5 .cm-formatting-list-ol + .cm-list-5::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-5 .cm-formatting-list-ol + .cm-list-5::before {
+  /* 1st level ul bullet */
+  content: "." counter(ol-5);
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-6 .cm-formatting-list-ol + .cm-list-6::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-6 .cm-formatting-list-ol + .cm-list-6::before {
+  /* 1st level ul bullet */
+  content: "." counter(ol-6);
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-7 .cm-formatting-list-ol + .cm-list-7::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-7 .cm-formatting-list-ol + .cm-list-7::before {
+  /* 1st level ul bullet */
+  content: "." counter(ol-7);
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-8 .cm-formatting-list-ol + .cm-list-8::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-8 .cm-formatting-list-ol + .cm-list-8::before {
+  /* 1st level ul bullet */
+  content: "." counter(ol-8);
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-9 .cm-formatting-list-ol + .cm-list-9::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-9 .cm-formatting-list-ol + .cm-list-9::before {
+  /* 1st level ul bullet */
+  content: "." counter(ol-9);
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-10 .cm-formatting-list-ol + .cm-list-10::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-10 .cm-formatting-list-ol + .cm-list-10::before {
+  /* 1st level ul bullet */
+  content: "." counter(ol-10);
+}
+
+.cm-s-obsidian pre.HyperMD-hr {
+  /* code mirror freaks out with lines that change size, so we have to make the
+    hrs take up more room, even when they're just text */
+  padding-bottom: 52px;
+}
+
+.CodeMirror-line:not(.HyperMD-list-line) {
+  counter-reset: ol-1;
+}
+
+.HyperMD-list-line-1 {
+  counter-reset: ol-2;
+}
+.HyperMD-list-line-1 .cm-formatting-list-ol + .cm-list-1 {
+  counter-increment: ol-1;
+}
+
+.HyperMD-list-line-2 {
+  counter-reset: ol-3;
+}
+.HyperMD-list-line-2 .cm-formatting-list-ol + .cm-list-2 {
+  counter-increment: ol-2;
+}
+
+.HyperMD-list-line-3 {
+  counter-reset: ol-4;
+}
+.HyperMD-list-line-3 .cm-formatting-list-ol + .cm-list-3 {
+  counter-increment: ol-3;
+}
+
+.HyperMD-list-line-4 {
+  counter-reset: ol-5;
+}
+.HyperMD-list-line-4 .cm-formatting-list-ol + .cm-list-4 {
+  counter-increment: ol-4;
+}
+
+.HyperMD-list-line-5 {
+  counter-reset: ol-6;
+}
+.HyperMD-list-line-5 .cm-formatting-list-ol + .cm-list-5 {
+  counter-increment: ol-5;
+}
+
+.HyperMD-list-line-6 {
+  counter-reset: ol-7;
+}
+.HyperMD-list-line-6 .cm-formatting-list-ol + .cm-list-6 {
+  counter-increment: ol-6;
+}
+
+.HyperMD-list-line-7 {
+  counter-reset: ol-8;
+}
+.HyperMD-list-line-7 .cm-formatting-list-ol + .cm-list-7 {
+  counter-increment: ol-7;
+}
+
+.HyperMD-list-line-8 {
+  counter-reset: ol-9;
+}
+.HyperMD-list-line-8 .cm-formatting-list-ol + .cm-list-8 {
+  counter-increment: ol-8;
+}
+
+.HyperMD-list-line-9 {
+  counter-reset: ol-10;
+}
+.HyperMD-list-line-9 .cm-formatting-list-ol + .cm-list-9 {
+  counter-increment: ol-9;
+}
+
+.HyperMD-list-line-10 {
+  counter-reset: ol-11;
+}
+.HyperMD-list-line-10 .cm-formatting-list-ol + .cm-list-10 {
+  counter-increment: ol-10;
+}
+
+/*# sourceMappingURL=obsidian.css.map */
