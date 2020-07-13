@@ -37,6 +37,19 @@
     }
   }
 
+  .cm-formatting-image ~ .cm-url {
+    /* indicate hyperlinked image (thanks loikein) */
+    font-size: 1.5em;
+    &::after {
+      content: "\01f5bc";
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 0.8em;
+    }
+  }
+
   pre.HyperMD-hr {
     /* hide hr breaks */
     visibility: hidden;
@@ -50,25 +63,35 @@
     height: 2px;
     display: block;
     background-color: var(--background-modifier-border);
-    margin: 26px 0;
+    /* (thanks loikein) */
+    margin: auto;
   }
 
   .HyperMD-list-line, &.HyperMD-list-line { 
-    /* still have to work out ordered lists and checkbox lists... */
-    .cm-list-1::before {
-      /* 1st level ul bullet */
-      content: '•';
-      padding-right: 0.2em;
-    }
-    .cm-list-2::before {
-      /* 2nd level ul bullet */
-      content: '◦';
-      padding-right: 0.2em;
-    }
-    .cm-list-3::before {
-      /* 3rd level ul bullet */
-      content: '▪';
-      padding-right: 0.4em;
+    .cm-formatting-list-ul {
+      display: inline;
+      font-size:0;
+      &::before {
+        font-size: 1rem;
+      }
+
+      &.cm-list-1 {
+        &::before {
+          /* 1st level ul bullet */
+          content: '•';
+          padding-right: 0.2em;
+        }
+      }
+      &.cm-list-2::before {
+        /* 2nd level ul bullet */
+        content: '◦';
+        padding-right: 0.2em;
+      }
+      &.cm-list-3::before {
+        /* 3rd level ul bullet */
+        content: '▪';
+        padding-right: 0.4em;
+      }
     }
     .cm-formatting-list-ol + span {
       margin-left: 1.5em;
@@ -88,17 +111,41 @@
     .HyperMD-list-line-#{$i}, &.HyperMD-list-line-#{$i} {
       .cm-formatting-list-ol + .cm-list-#{$i} {
         &::before {
-        /* 1st level ul bullet */
           content: "." counter(ol-#{$i});
+        }
+      }
+
+      /* show checkbox in editor (thanks loikein) */
+      .cm-formatting-task.cm-property + .cm-list-#{$i} {
+        &::before {
+          // checked box
+          // using U+2612 ☒ BALLOT BOX WITH X because
+          // U+2611 ☑ BALLOT BOX WITH CHECK is a graphical emoji these days
+          // the 'X' one is more consistent with U+2610 ☐ BALLOT BOX
+          // and in code you put an 'x' in the box to check it
+          content: "\02612";
+        }
+      }
+      .cm-formatting-task.cm-meta + .cm-list-#{$i} {
+        &::before {
+          // unchecked box: U+2610 ☐ BALLOT BOX
+          content: "\02610";
         }
       }
     }
   }
-}
-.cm-s-obsidian pre.HyperMD-hr {
-  /* code mirror freaks out with lines that change size, so we have to make the
-    hrs take up more room, even when they're just text */
-  padding-bottom: 52px;
+  
+  /* blockquote left border (thanks loikein) */
+  .HyperMD-quote, &.HyperMD-quote {
+    &, &:not(.HyperMD-quote-1) .cm-quote:not(.cm-formatting) {
+      border-left: 5px solid var(--background-modifier-border);
+      text-indent: 0 !important;
+      padding-left: 1em !important;
+    }
+    &:not(.HyperMD-quote-1) .cm-quote:not(.cm-formatting) {
+      display: inline-block;
+    }
+  }
 }
 
 .CodeMirror-line:not(.HyperMD-list-line){

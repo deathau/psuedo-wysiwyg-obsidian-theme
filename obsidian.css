@@ -1,4 +1,7 @@
 @charset "UTF-8";
+.CodeMirror-code > :not(.CodeMirror-activeline) {
+  /* blockquote left border (thanks loikein) */
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) .cm-formatting-link {
   /* this is for the double square brackets on internal links */
   display: none;
@@ -34,6 +37,18 @@
   left: 4px;
   bottom: 0;
 }
+.CodeMirror-code > :not(.CodeMirror-activeline) .cm-formatting-image ~ .cm-url {
+  /* indicate hyperlinked image (thanks loikein) */
+  font-size: 1.5em;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .cm-formatting-image ~ .cm-url::after {
+  content: "🖼";
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.8em;
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) pre.HyperMD-hr {
   /* hide hr breaks */
   visibility: hidden;
@@ -46,22 +61,27 @@
   height: 2px;
   display: block;
   background-color: var(--background-modifier-border);
-  margin: 26px 0;
+  /* (thanks loikein) */
+  margin: auto;
 }
-.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line {
-  /* still have to work out ordered lists and checkbox lists... */
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-formatting-list-ul, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-formatting-list-ul {
+  display: inline;
+  font-size: 0;
 }
-.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-list-1::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-list-1::before {
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-formatting-list-ul::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-formatting-list-ul::before {
+  font-size: 1rem;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-formatting-list-ul.cm-list-1::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-formatting-list-ul.cm-list-1::before {
   /* 1st level ul bullet */
   content: "•";
   padding-right: 0.2em;
 }
-.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-list-2::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-list-2::before {
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-formatting-list-ul.cm-list-2::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-formatting-list-ul.cm-list-2::before {
   /* 2nd level ul bullet */
   content: "◦";
   padding-right: 0.2em;
 }
-.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-list-3::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-list-3::before {
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line .cm-formatting-list-ul.cm-list-3::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line .cm-formatting-list-ul.cm-list-3::before {
   /* 3rd level ul bullet */
   content: "▪";
   padding-right: 0.4em;
@@ -79,51 +99,133 @@
   overflow: visible;
   white-space: nowrap;
 }
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-1, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-1 {
+  /* show checkbox in editor (thanks loikein) */
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-1 .cm-formatting-list-ol + .cm-list-1::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-1 .cm-formatting-list-ol + .cm-list-1::before {
-  /* 1st level ul bullet */
   content: "." counter(ol-1);
 }
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-1 .cm-formatting-task.cm-property + .cm-list-1::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-1 .cm-formatting-task.cm-property + .cm-list-1::before {
+  content: "☒";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-1 .cm-formatting-task.cm-meta + .cm-list-1::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-1 .cm-formatting-task.cm-meta + .cm-list-1::before {
+  content: "☐";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-2, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-2 {
+  /* show checkbox in editor (thanks loikein) */
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-2 .cm-formatting-list-ol + .cm-list-2::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-2 .cm-formatting-list-ol + .cm-list-2::before {
-  /* 1st level ul bullet */
   content: "." counter(ol-2);
 }
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-2 .cm-formatting-task.cm-property + .cm-list-2::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-2 .cm-formatting-task.cm-property + .cm-list-2::before {
+  content: "☒";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-2 .cm-formatting-task.cm-meta + .cm-list-2::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-2 .cm-formatting-task.cm-meta + .cm-list-2::before {
+  content: "☐";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-3, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-3 {
+  /* show checkbox in editor (thanks loikein) */
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-3 .cm-formatting-list-ol + .cm-list-3::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-3 .cm-formatting-list-ol + .cm-list-3::before {
-  /* 1st level ul bullet */
   content: "." counter(ol-3);
 }
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-3 .cm-formatting-task.cm-property + .cm-list-3::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-3 .cm-formatting-task.cm-property + .cm-list-3::before {
+  content: "☒";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-3 .cm-formatting-task.cm-meta + .cm-list-3::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-3 .cm-formatting-task.cm-meta + .cm-list-3::before {
+  content: "☐";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-4, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-4 {
+  /* show checkbox in editor (thanks loikein) */
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-4 .cm-formatting-list-ol + .cm-list-4::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-4 .cm-formatting-list-ol + .cm-list-4::before {
-  /* 1st level ul bullet */
   content: "." counter(ol-4);
 }
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-4 .cm-formatting-task.cm-property + .cm-list-4::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-4 .cm-formatting-task.cm-property + .cm-list-4::before {
+  content: "☒";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-4 .cm-formatting-task.cm-meta + .cm-list-4::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-4 .cm-formatting-task.cm-meta + .cm-list-4::before {
+  content: "☐";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-5, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-5 {
+  /* show checkbox in editor (thanks loikein) */
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-5 .cm-formatting-list-ol + .cm-list-5::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-5 .cm-formatting-list-ol + .cm-list-5::before {
-  /* 1st level ul bullet */
   content: "." counter(ol-5);
 }
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-5 .cm-formatting-task.cm-property + .cm-list-5::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-5 .cm-formatting-task.cm-property + .cm-list-5::before {
+  content: "☒";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-5 .cm-formatting-task.cm-meta + .cm-list-5::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-5 .cm-formatting-task.cm-meta + .cm-list-5::before {
+  content: "☐";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-6, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-6 {
+  /* show checkbox in editor (thanks loikein) */
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-6 .cm-formatting-list-ol + .cm-list-6::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-6 .cm-formatting-list-ol + .cm-list-6::before {
-  /* 1st level ul bullet */
   content: "." counter(ol-6);
 }
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-6 .cm-formatting-task.cm-property + .cm-list-6::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-6 .cm-formatting-task.cm-property + .cm-list-6::before {
+  content: "☒";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-6 .cm-formatting-task.cm-meta + .cm-list-6::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-6 .cm-formatting-task.cm-meta + .cm-list-6::before {
+  content: "☐";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-7, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-7 {
+  /* show checkbox in editor (thanks loikein) */
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-7 .cm-formatting-list-ol + .cm-list-7::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-7 .cm-formatting-list-ol + .cm-list-7::before {
-  /* 1st level ul bullet */
   content: "." counter(ol-7);
 }
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-7 .cm-formatting-task.cm-property + .cm-list-7::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-7 .cm-formatting-task.cm-property + .cm-list-7::before {
+  content: "☒";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-7 .cm-formatting-task.cm-meta + .cm-list-7::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-7 .cm-formatting-task.cm-meta + .cm-list-7::before {
+  content: "☐";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-8, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-8 {
+  /* show checkbox in editor (thanks loikein) */
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-8 .cm-formatting-list-ol + .cm-list-8::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-8 .cm-formatting-list-ol + .cm-list-8::before {
-  /* 1st level ul bullet */
   content: "." counter(ol-8);
 }
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-8 .cm-formatting-task.cm-property + .cm-list-8::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-8 .cm-formatting-task.cm-property + .cm-list-8::before {
+  content: "☒";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-8 .cm-formatting-task.cm-meta + .cm-list-8::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-8 .cm-formatting-task.cm-meta + .cm-list-8::before {
+  content: "☐";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-9, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-9 {
+  /* show checkbox in editor (thanks loikein) */
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-9 .cm-formatting-list-ol + .cm-list-9::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-9 .cm-formatting-list-ol + .cm-list-9::before {
-  /* 1st level ul bullet */
   content: "." counter(ol-9);
 }
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-9 .cm-formatting-task.cm-property + .cm-list-9::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-9 .cm-formatting-task.cm-property + .cm-list-9::before {
+  content: "☒";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-9 .cm-formatting-task.cm-meta + .cm-list-9::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-9 .cm-formatting-task.cm-meta + .cm-list-9::before {
+  content: "☐";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-10, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-10 {
+  /* show checkbox in editor (thanks loikein) */
+}
 .CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-10 .cm-formatting-list-ol + .cm-list-10::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-10 .cm-formatting-list-ol + .cm-list-10::before {
-  /* 1st level ul bullet */
   content: "." counter(ol-10);
 }
-
-.cm-s-obsidian pre.HyperMD-hr {
-  /* code mirror freaks out with lines that change size, so we have to make the
-    hrs take up more room, even when they're just text */
-  padding-bottom: 52px;
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-10 .cm-formatting-task.cm-property + .cm-list-10::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-10 .cm-formatting-task.cm-property + .cm-list-10::before {
+  content: "☒";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-list-line-10 .cm-formatting-task.cm-meta + .cm-list-10::before, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-list-line-10 .cm-formatting-task.cm-meta + .cm-list-10::before {
+  content: "☐";
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-quote, .CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-quote:not(.HyperMD-quote-1) .cm-quote:not(.cm-formatting), .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-quote, .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-quote:not(.HyperMD-quote-1) .cm-quote:not(.cm-formatting) {
+  border-left: 5px solid var(--background-modifier-border);
+  text-indent: 0 !important;
+  padding-left: 1em !important;
+}
+.CodeMirror-code > :not(.CodeMirror-activeline) .HyperMD-quote:not(.HyperMD-quote-1) .cm-quote:not(.cm-formatting), .CodeMirror-code > :not(.CodeMirror-activeline).HyperMD-quote:not(.HyperMD-quote-1) .cm-quote:not(.cm-formatting) {
+  display: inline-block;
 }
 
 .CodeMirror-line:not(.HyperMD-list-line) {
